@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemMetrics", "SystemMetrics\SystemMetrics.csproj", "{850FEB98-4776-4877-B30D-D87DAC6FFC20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3D1FA247-90D2-4307-B1F3-129F0719A3C7}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Debug|x86.Build.0 = Debug|Any CPU
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Release|x86.ActiveCfg = Release|Any CPU
+		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5520AD15-3740-4E59-A758-D4A3319C34F3}
+	EndGlobalSection
+EndGlobal
