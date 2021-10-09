@@ -6,7 +6,7 @@
     <ProductVersion>3.10</ProductVersion>
     <ProjectGuid>0e134eb7-7ca1-433b-953d-c1dcc7a6e8c0</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
-    <OutputName>SystemMetrics Installer</OutputName>
+    <OutputName>SystemMetrics</OutputName>
     <OutputType>Package</OutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
