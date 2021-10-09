@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using DSharp4Webhook.Core;
+using Newtonsoft.Json;
 using OpenHardwareMonitor.Hardware;
 using System;
 using System.IO;
@@ -13,18 +14,19 @@ namespace SystemMetrics
 {
     public partial class MetricsService : ServiceBase
     {
-        private FileLogger logger = new FileLogger();
-        private Timer timer = new Timer();
-        private HttpClient client = new HttpClient();
-        private IniFile file = new IniFile();
+        private readonly FileLogger logger = new FileLogger();
+        private readonly Timer timer = new Timer();
+        private readonly HttpClient client = new HttpClient();
+        private readonly IniFile file = new IniFile();
         private string url;
 
-        private string defaultIni =
+        private readonly string defaultIni =
             @"[SystemMetrics]
             Interval = 60000
             APIKey = your-api-key-goes-here
             PageId = your-page-id-goes-here
-            MetricId = your-metric-id-goes-here";
+            MetricId = your-metric-id-goes-here
+            Webhook = optional-discord-webhook-url";
 
         public MetricsService()
         {
@@ -68,6 +70,23 @@ namespace SystemMetrics
         {
             float? temp = GetTemperature();
 
+            if(temp == 0)
+            {
+                logger.Log($"Got an invalid temperature while trying to submit data: {temp}°C", Level.ERROR);
+                string webhookURL = file["SystemMetrics"]["Webhook"].GetString();
+                if(webhookURL != null || !webhookURL.Equals("optional-discord-webhook-url"))
+                {
+                    var provider = new WebhookProvider("");
+                    var webhook = provider.CreateWebhook(webhookURL);
+                    var messageBuilder = ConstructorProvider.GetMessageBuilder();
+
+                    webhook.SendMessage($":warning: GPU temperature returned {temp}°C, unable to submit data.")
+                        .Queue(() => logger.Log("Sent webhook warning about invalid temperature", Level.DEBUG));
+                }
+
+                return;
+            }
+
             string json = string.Format("{{\"data\":{{ \"timestamp\": \"{0}\", \"value\": \"{1}\" }}}}",
                 (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0)).TotalSeconds,
                 temp);
@@ -93,13 +112,25 @@ namespace SystemMetrics
             {
                 computer.Traverse(this);
             }
+
             public void VisitHardware(IHardware hardware)
             {
                 hardware.Update();
-                foreach (IHardware subHardware in hardware.SubHardware) subHardware.Accept(this);
+                foreach (IHardware subHardware in hardware.SubHardware)
+                {
+                    subHardware.Accept(this);
+                }
             }
-            public void VisitSensor(ISensor sensor) { }
-            public void VisitParameter(IParameter parameter) { }
+            
+            public void VisitSensor(ISensor sensor) 
+            {
+                throw new NotSupportedException();
+            }
+            
+            public void VisitParameter(IParameter parameter) 
+            {
+                throw new NotSupportedException();
+            }
         }
 
         protected float? GetTemperature()
