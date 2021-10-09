@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("System Metrics Updater")]
 [assembly: AssemblyDescription("Automatically updates the metrics at cosmictoasters.statuspage.io every a defined period of time.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Insert Team")]
 [assembly: AssemblyProduct("System Metrics Updater")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]

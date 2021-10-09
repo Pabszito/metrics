@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SystemMetrics.Installer", "SystemMetrics.Installer\SystemMetrics.Installer.wixproj", "{0E134EB7-7CA1-433B-953D-C1DCC7A6E8C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Release|Any CPU.Build.0 = Release|Any CPU
 		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Release|x86.ActiveCfg = Release|Any CPU
 		{850FEB98-4776-4877-B30D-D87DAC6FFC20}.Release|x86.Build.0 = Release|Any CPU
+		{0E134EB7-7CA1-433B-953D-C1DCC7A6E8C0}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0E134EB7-7CA1-433B-953D-C1DCC7A6E8C0}.Debug|x86.ActiveCfg = Debug|x86
+		{0E134EB7-7CA1-433B-953D-C1DCC7A6E8C0}.Debug|x86.Build.0 = Debug|x86
+		{0E134EB7-7CA1-433B-953D-C1DCC7A6E8C0}.Release|Any CPU.ActiveCfg = Release|x86
+		{0E134EB7-7CA1-433B-953D-C1DCC7A6E8C0}.Release|x86.ActiveCfg = Release|x86
+		{0E134EB7-7CA1-433B-953D-C1DCC7A6E8C0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

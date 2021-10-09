@@ -22,11 +22,11 @@ namespace SystemMetrics
 
         private readonly string defaultIni =
             @"[SystemMetrics]
-            Interval = 60000
-            APIKey = your-api-key-goes-here
-            PageId = your-page-id-goes-here
-            MetricId = your-metric-id-goes-here
-            Webhook = optional-discord-webhook-url";
+Interval = 60000
+APIKey = your-api-key-goes-here
+PageId = your-page-id-goes-here
+MetricId = your-metric-id-goes-here
+Webhook = optional-discord-webhook-url";
 
         public MetricsService()
         {

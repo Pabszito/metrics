@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="SystemMetrics Installer" Language="1033" Version="1.0.0.0" Manufacturer="Insert Team" UpgradeCode="aec8659b-1880-4210-9ac5-cf818a8cf2ff">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
+
+    <Feature Id="ProductFeature" Title="Installer" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="ConfigFiles" />
+      <ComponentGroupRef Id="ServiceInstaller" />
+    </Feature>
+  </Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SystemMetrics" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Guid="CB0604BE-202F-4A0B-BBEF-F4C962CE463A">
+        <File Source="$(var.SystemMetrics.TargetDir)DSharp4Webhook.dll" KeyPath="yes"/>
+      </Component>
+      <Component Guid="ABA12169-33E8-4140-A547-1268DA306C61">
+        <File Source="$(var.SystemMetrics.TargetDir)Newtonsoft.Json.dll" KeyPath="yes"/>
+      </Component>
+      <Component Guid="4A1DA99A-DC08-4E9E-9C05-88987C18D6D4">
+        <File Source="$(var.SystemMetrics.TargetDir)OpenHardwareMonitorLib.dll" KeyPath="yes"/>
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ConfigFiles" Directory="INSTALLFOLDER">
+      <Component Guid="17C70FC2-4AF5-4381-9FBE-B9C4D062E74A" NeverOverwrite="yes" Permanent="yes">
+        <File Source="$(var.SystemMetrics.TargetDir)SystemMetrics.exe.config" KeyPath="yes"/>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  
+  <Fragment>
+    <ComponentGroup Id="ServiceInstaller" Directory="INSTALLFOLDER">
+      <Component Guid="F7E041AB-3227-4272-92C1-4A12685F30AF" >
+        <File Source="$(var.SystemMetrics.TargetDir)SystemMetrics.exe" KeyPath="yes"/>
+        <ServiceInstall Id="MetricsServiceInstaller"
+                        Type="ownProcess"
+                        Name="MetricsService"
+                        DisplayName="System Metrics Updater"
+                        Description="Automatically updates the metrics at cosmictoasters.statuspage.io every a defined period of time."
+                        Start="auto"
+                        ErrorControl="normal"
+                        Account="LocalSystem"/>
+        <ServiceControl Id="StartService" Start="install" Stop="both" Remove="uninstall" Name="MetricsService" Wait="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
