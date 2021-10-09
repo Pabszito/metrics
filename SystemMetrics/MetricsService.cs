@@ -74,11 +74,10 @@ namespace SystemMetrics
             {
                 logger.Log($"Got an invalid temperature while trying to submit data: {temp}°C", Level.ERROR);
                 string webhookURL = file["SystemMetrics"]["Webhook"].GetString();
-                if(webhookURL != null || !webhookURL.Equals("optional-discord-webhook-url"))
+                if(webhookURL != null && !webhookURL.Equals("optional-discord-webhook-url"))
                 {
                     var provider = new WebhookProvider("");
                     var webhook = provider.CreateWebhook(webhookURL);
-                    var messageBuilder = ConstructorProvider.GetMessageBuilder();
 
                     webhook.SendMessage($":warning: GPU temperature returned {temp}°C, unable to submit data.")
                         .Queue(() => logger.Log("Sent webhook warning about invalid temperature", Level.DEBUG));
