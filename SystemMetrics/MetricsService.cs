@@ -70,13 +70,15 @@ Webhook = optional-discord-webhook-url";
         {
             float? temp = GetTemperature();
 
-            if(temp == 0)
+            if(temp <= 5 || temp >= 115) 
             {
                 logger.Log($"Got an invalid temperature while trying to submit data: {temp}°C", Level.ERROR);
                 string webhookURL = file["SystemMetrics"]["Webhook"].GetString();
-                if(webhookURL != null && !webhookURL.Equals("optional-discord-webhook-url"))
+                if(!webhookURL.Equals("optional-discord-webhook-url"))
                 {
-                    var provider = new WebhookProvider("");
+                    logger.Log("Attempting to send warning via webhook...", Level.DEBUG);
+
+                    var provider = new WebhookProvider("447902653842980875"); // wtf is the string on the constructor
                     var webhook = provider.CreateWebhook(webhookURL);
 
                     webhook.SendMessage($":warning: GPU temperature returned {temp}°C, unable to submit data.")
