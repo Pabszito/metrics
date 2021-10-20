@@ -8,12 +8,12 @@ Requeriments:
 - .NET Framework 4.8
 - An IDE like Visual Studio
 - Git
-- WiX for the .msi installer
+- WiX for building the .msi installer
 
 Install the required dependencies, and then run the following commands:
 ```sh
 git clone https://github.com/Pabszito/metrics # Clone the fucking repository
-start ./SystemMetrics/SystemMetrics.sln # Opens the fucking solution with Visual Studio
+start ./metrics/SystemMetrics.sln # Opens the fucking solution with Visual Studio
 ```
 Right-click the solution, and then click Build. If you see no errors at all, congrats, you compiled this shit.
 ## Notes
